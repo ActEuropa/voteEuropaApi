@@ -11,7 +11,7 @@
     "url": "git+https://github.com/ActEuropa/VotingPlatformApi.git"
   },
   "author": "ActEuropa developers team",
-  "license": "EUPL-1.1",
+  "license": "AGPLv3",
   "bugs": {
     "url": "https://github.com/ActEuropa/VotingPlatformApi/issues"
   },
