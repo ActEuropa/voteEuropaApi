@@ -1,5 +1,5 @@
 {
-  "name": "voting-platform-api",
+  "name": "vote-europa",
   "version": "1.0.0",
   "description": "A Voting Platform Managed via a REST API",
   "main": "server.js",
