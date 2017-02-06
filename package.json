@@ -1,0 +1,19 @@
+{
+  "name": "voting-platform-api",
+  "version": "1.0.0",
+  "description": "A Voting Platform Managed via a REST API",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ActEuropa/VotingPlatformApi.git"
+  },
+  "author": "ActEuropa developers team",
+  "license": "EUPL-1.1",
+  "bugs": {
+    "url": "https://github.com/ActEuropa/VotingPlatformApi/issues"
+  },
+  "homepage": "https://github.com/ActEuropa/VotingPlatformApi#readme"
+}
