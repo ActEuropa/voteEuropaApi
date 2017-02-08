@@ -15,3 +15,17 @@
  along with VoteEuropa. If not, see <http://www.gnu.org/licenses/>.
 */
 
+var restify = require('restify');
+var AuthController = require('./controllers/AuthController.js');
+
+var Server = function (authController) {
+	this.authController = authController || new AuthController();
+	this.server = restify.createServer();
+};
+
+Server.prototype.start = function () {
+	this.server.post("/auth/", this.authController.authenticate)
+	this.server.listen(8000)
+};
+
+module.exports = Server;
