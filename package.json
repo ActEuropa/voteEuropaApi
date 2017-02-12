@@ -4,7 +4,7 @@
   "description": "A Voting Platform Managed via a REST API",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha -u tdd --recursive tests"
   },
   "repository": {
     "type": "git",
@@ -16,12 +16,13 @@
     "url": "https://github.com/ActEuropa/VotingPlatformApi/issues"
   },
   "dependencies": {
-    "restify": "4.3.0",
-    "snoowrap": "1.12.0"
+    "restify": "4.3.*",
+    "snoowrap": "1.12.*"
   },
   "devDependencies": {
-    "sinon": "1.17.7",
-    "mocha": "3.2.0"
+    "sinon": "1.17.*",
+    "mocha": "3.2.*",
+    "chai": "3.5.*"
   },
   "homepage": "https://github.com/ActEuropa/VotingPlatformApi#readme"
 }
