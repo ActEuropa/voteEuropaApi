@@ -15,12 +15,15 @@
  along with VoteEuropa. If not, see <http://www.gnu.org/licenses/>.
  */
 
-var Auth = function() {
+var settings = require('../settings');
+var Provider = require('./providers/auth/' + settings.auth.provider);
 
+var Auth = function(provider) {
+	this.provider = provider || new Provider();
 };
 
 Auth.prototype.auth = function(user) {
-
+	this.provider.auth(user);
 };
 
 
