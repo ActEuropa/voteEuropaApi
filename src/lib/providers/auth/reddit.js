@@ -15,8 +15,10 @@
  along with VoteEuropa. If not, see <http://www.gnu.org/licenses/>.
  */
 
-var Reddit = function () {
+var Snoowrap = require('snoowrap');
 
+var Reddit = function (redditApi) {
+	//this.redditApi = redditApi || new Snoowrap();
 };
 
 Reddit.prototype.auth = function (user) {

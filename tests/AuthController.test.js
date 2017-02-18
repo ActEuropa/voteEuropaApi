@@ -39,7 +39,7 @@ suite('AuthController', function () {
 	});
 
 	test('AuthController calls Auth auth method', sinon.test(function () {
-		authMock.expects('auth').once().withArgs(user);
+		authMock.expects('auth').once().withArgs(user, sinon.match.any);
 		sut.authenticate(req, res, next);
 		authMock.verify();
 	}));

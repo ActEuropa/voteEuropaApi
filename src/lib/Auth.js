@@ -22,8 +22,8 @@ var Auth = function(provider) {
 	this.provider = provider || new Provider();
 };
 
-Auth.prototype.auth = function(user) {
-	this.provider.auth(user);
+Auth.prototype.auth = function(user, callback) {
+	this.provider.auth(user, callback);
 };
 
 

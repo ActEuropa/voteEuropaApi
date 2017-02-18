@@ -24,7 +24,21 @@ var AuthController = function (auth) {
 
 AuthController.prototype.authenticate = function (req, res, next) {
 	var user = new User(req.params.name, req.params.pwd);
-	this.auth.auth(user);
+	this.auth.auth(user, function (response, err) {
+		if(err){
+			res.status(500);
+			res.json({
+				type: false,
+				error: err
+			});
+		} else {
+			res.status(200);
+			res.json({
+				type: true,
+				data: response
+			});
+		}
+	});
 };
 
 
