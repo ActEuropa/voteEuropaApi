@@ -2,7 +2,7 @@ var sinon = require('sinon');
 var assert = require('chai').assert;
 var Auth = require('../src/lib/Auth');
 // using the reddit provider by default
-var Provider = require('../src/lib/providers/auth/reddit');
+var Provider = require('../src/lib/providers/auth/ldap');
 var User = require('../src/lib/dto/user');
 
 suite('Auth', function () {

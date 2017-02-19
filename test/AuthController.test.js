@@ -28,7 +28,7 @@ suite('AuthController', function () {
 	setup(function () {
 		req = {
 			params: {
-				name: "aTestUser",
+				username: "aTestUser",
 				pwd: "aTestPwd"
 			}
 		};
