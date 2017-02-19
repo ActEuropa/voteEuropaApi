@@ -20,7 +20,8 @@ var settings = {
 		provider: 'ldap'
 	},
 	ldap: {
-		url: 'ldap://127.0.0.1:389'
+		url: 'ldap://127.0.0.1:389',
+		dcString: ',dc=test,dc=com'
 	}
 };
 
