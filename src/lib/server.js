@@ -21,11 +21,12 @@ var AuthController = require('./controllers/AuthController.js');
 var Server = function (authController) {
 	this.authController = authController || new AuthController();
 	this.server = restify.createServer();
+	this.server.use(restify.bodyParser());
 };
 
 Server.prototype.start = function () {
-	this.server.post("/auth/", this.authController.authenticate)
-	this.server.listen(8000)
+	this.server.post("/auth", this.authController.authenticate);
+	this.server.listen(8000);
 };
 
 module.exports = Server;

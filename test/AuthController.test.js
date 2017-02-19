@@ -35,12 +35,12 @@ suite('AuthController', function () {
 		user = new User('aTestUser', "aTestPwd");
 		auth = new Auth();
 		authMock = sinon.mock(auth);
-		sut = new AuthController(auth);
+		sut = new AuthController();
 	});
 
 	test('AuthController calls Auth auth method', sinon.test(function () {
 		authMock.expects('auth').once().withArgs(user, sinon.match.any);
-		sut.authenticate(req, res, next);
+		sut.authenticate(req, res, next, auth);
 		authMock.verify();
 	}));
 

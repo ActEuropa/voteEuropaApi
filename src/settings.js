@@ -17,7 +17,10 @@
 
 var settings = {
 	auth: {
-		provider: 'reddit'
+		provider: 'ldap'
+	},
+	ldap: {
+		url: 'ldap://127.0.0.1:389'
 	}
 };
 

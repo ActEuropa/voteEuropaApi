@@ -15,15 +15,24 @@
  along with VoteEuropa. If not, see <http://www.gnu.org/licenses/>.
  */
 
-var Snoowrap = require('snoowrap');
+var ldapjs = require('ldapjs');
+var settings = require('../../../settings.js');
 
-var Reddit = function (redditApi) {
-	//this.redditApi = redditApi || new Snoowrap();
+var LdapProvider = function () {
+	this.ldap = ldapjs.createClient({
+		url: settings.ldap.url
+	});
 };
 
-Reddit.prototype.auth = function (user) {
-
+LdapProvider.prototype.auth = function (user, callback) {
+	this.ldap.bind('cn=' + user.getUserName(), user.getPassword(), function(err) {
+		if(err){
+			callback(null, err);
+		} else {
+			callback(true, null);
+		}
+	});
 };
 
 
-module.exports = Reddit;
+module.exports = LdapProvider;

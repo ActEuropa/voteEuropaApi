@@ -15,15 +15,17 @@
  along with VoteEuropa. If not, see <http://www.gnu.org/licenses/>.
  */
 
-var Auth = require('../Auth');
+var Auth = require('../Auth.js');
 var User = require('../dto/user');
 
-var AuthController = function (auth) {
-	this.auth = auth || new Auth();
+var AuthController = function () {
+	// this exists to be the constructor.
 };
 
-AuthController.prototype.authenticate = function (req, res, next) {
-	var user = new User(req.params.name, req.params.pwd);
+AuthController.prototype.authenticate = function (req, res, next, auth) {
+	console.log("New login request for: ", req.params.username);
+	this.auth = auth || new Auth();
+	var user = new User(req.params.username, req.params.pwd);
 	this.auth.auth(user, function (response, err) {
 		if(err){
 			res.status(500);

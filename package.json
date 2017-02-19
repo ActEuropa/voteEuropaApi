@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "restify": "4.3.*",
-    "snoowrap": "1.12.*"
+    "ldapjs": "1.0.*"
   },
   "devDependencies": {
     "sinon": "1.17.*",
