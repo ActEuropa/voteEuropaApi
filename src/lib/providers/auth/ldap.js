@@ -27,9 +27,9 @@ var LdapProvider = function () {
 LdapProvider.prototype.auth = function (user, callback) {
 	this.ldap.bind('cn=' + user.getUserName() + settings.ldap.dcString, user.getPassword(), function(err) {
 		if(err){
-			callback(null, err);
+			return callback(null, err);
 		} else {
-			callback(true, null);
+			return callback(true, null);
 		}
 	});
 };
