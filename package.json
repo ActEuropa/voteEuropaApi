@@ -17,7 +17,9 @@
   },
   "dependencies": {
     "restify": "4.3.*",
-    "ldapjs": "1.0.*"
+    "ldapjs": "1.0.*",
+    "rand-token": "0.3.*",
+    "mongoose": "4.8.*"
   },
   "devDependencies": {
     "sinon": "1.17.*",

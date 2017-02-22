@@ -30,14 +30,12 @@ AuthController.prototype.authenticate = function (req, res, next, auth) {
 		if(err){
 			res.status(500);
 			res.json({
-				type: false,
 				error: err
 			});
 		} else {
 			res.status(200);
 			res.json({
-				type: true,
-				data: response
+				data: response.message
 			});
 		}
 	});
