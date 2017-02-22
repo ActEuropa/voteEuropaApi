@@ -20,9 +20,10 @@ var assert = require('chai').assert;
 var AuthController = require('../src/lib/controllers/AuthController');
 var User = require('../src/lib/dto/user');
 var Auth = require('../src/lib/Auth');
+var Tokens = require('../src/lib/tokens/Tokens');
 
 suite('AuthController', function () {
-	var sut, user, auth, authMock;
+	var sut, user, auth, authMock, tokens, tokensMock;
 	var req, res, next;
 
 	setup(function () {
@@ -35,13 +36,21 @@ suite('AuthController', function () {
 		user = new User('aTestUser', "aTestPwd");
 		auth = new Auth();
 		authMock = sinon.mock(auth);
+		tokens = new Tokens();
+		tokensMock = sinon.mock(tokens);
 		sut = new AuthController();
 	});
 
 	test('AuthController calls Auth auth method', sinon.test(function () {
 		authMock.expects('auth').once().withArgs(user, sinon.match.any);
-		sut.authenticate(req, res, next, auth);
+		sut.authenticate(req, res, next, auth, tokens);
 		authMock.verify();
+	}));
+
+	test('AuthController calls Tokens.getToken', sinon.test(function () {
+		tokensMock.expects('getToken').once().withArgs();
+		sut.authenticate(req, res, next, auth, tokens);
+		tokensMock.verify();
 	}));
 
 });

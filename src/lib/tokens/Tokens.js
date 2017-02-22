@@ -13,36 +13,15 @@
  GNU Affero General Public License for more details.
  You should have received a copy of the GNU Affero General Public License
  along with VoteEuropa. If not, see <http://www.gnu.org/licenses/>.
-*/
+ */
 
-var Auth = require('../Auth.js');
-var User = require('../dto/user');
-var Tokens = require('../tokens/Tokens');
+var Tokens = function () {
 
-var AuthController = function () {
-	// this exists to be the constructor.
 };
 
-AuthController.prototype.authenticate = function (req, res, next, auth, tokens) {
-	this.auth = auth || new Auth();
-	this.tokens = tokens || new Tokens();
-	var user = new User(req.params.username, req.params.pwd);
-	var token = this.tokens.getToken()
-	this.auth.auth(user, function (response, err) {
-		if(err){
-			res.status(500);
-			res.json({
-				error: err
-			});
-		} else {
-			res.status(200);
-			res.json({
-				data: response.message,
-				token: token
-			});
-		}
-	});
+Tokens.prototype.getToken = function () {
+
 };
 
 
-module.exports = AuthController;
+module.exports = Tokens;
