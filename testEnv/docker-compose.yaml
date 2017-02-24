@@ -1,0 +1,11 @@
+version: '2'
+services:
+  ldap:
+      image: osixia/openldap
+      restart: always
+      ports:
+        - "0.0.0.0:389:389"
+      environment:
+        LDAP_ORGANISATION: "My Test"
+        LDAP_DOMAIN: "test.com"
+        LDAP_ADMIN_PASSWORD: "test"
