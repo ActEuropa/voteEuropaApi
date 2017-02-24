@@ -19,7 +19,7 @@ var Tokens = function () {
 
 };
 
-Tokens.prototype.getToken = function () {
+Tokens.prototype.getToken = function (callback) {
 
 };
 

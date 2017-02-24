@@ -26,8 +26,8 @@ var AuthController = function () {
 AuthController.prototype.authenticate = function (req, res, next, auth, tokens) {
 	this.auth = auth || new Auth();
 	this.tokens = tokens || new Tokens();
+	var self = this;
 	var user = new User(req.params.username, req.params.pwd);
-	var token = this.tokens.getToken()
 	this.auth.auth(user, function (response, err) {
 		if(err){
 			res.status(500);
@@ -35,10 +35,12 @@ AuthController.prototype.authenticate = function (req, res, next, auth, tokens) 
 				error: err
 			});
 		} else {
-			res.status(200);
-			res.json({
-				data: response.message,
-				token: token
+			self.tokens.getToken(function (token) {
+				res.status(200);
+				res.json({
+					data: response,
+					token: token
+				});
 			});
 		}
 	});

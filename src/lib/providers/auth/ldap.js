@@ -29,7 +29,7 @@ LdapProvider.prototype.auth = function (user, callback) {
 		if(err){
 			return callback(null, err);
 		} else {
-			return callback(true, null);
+			return callback("correct login.", null);
 		}
 	});
 };

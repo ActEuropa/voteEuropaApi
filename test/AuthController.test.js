@@ -48,6 +48,11 @@ suite('AuthController', function () {
 	}));
 
 	test('AuthController calls Tokens.getToken', sinon.test(function () {
+		var auth = {
+			auth: function (user, callback) {
+				callback(true, false);
+			}
+		};
 		tokensMock.expects('getToken').once().withArgs();
 		sut.authenticate(req, res, next, auth, tokens);
 		tokensMock.verify();
