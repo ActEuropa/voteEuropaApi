@@ -29,7 +29,7 @@ Tokens.prototype.getToken = function (username, callback) {
 		if(err){
 			throw new Error(err);
 		} else {
-			callback(token);
+			return callback(token);
 		}
 	});
 };
