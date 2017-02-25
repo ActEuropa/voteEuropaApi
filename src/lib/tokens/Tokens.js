@@ -15,12 +15,23 @@
  along with VoteEuropa. If not, see <http://www.gnu.org/licenses/>.
  */
 
-var Tokens = function () {
+var randToken = require('rand-token');
+var settings = require('../../settings');
+var Provider = require('./persistenceProviders/' + settings.auth.tokensPersistenceProvider);
 
+var Tokens = function (provider) {
+	this.provider = provider || new Provider();
 };
 
-Tokens.prototype.getToken = function (callback) {
-
+Tokens.prototype.getToken = function (username, callback) {
+	var token = randToken.generate(64);
+	this.provider.save([username, token], function (err) {
+		if(err){
+			throw new Error(err);
+		} else {
+			callback(token);
+		}
+	});
 };
 
 

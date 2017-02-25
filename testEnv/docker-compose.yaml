@@ -9,3 +9,9 @@ services:
         LDAP_ORGANISATION: "My Test"
         LDAP_DOMAIN: "test.com"
         LDAP_ADMIN_PASSWORD: "test"
+
+  redis:
+      image: redis
+      restart: always
+      ports:
+        - "0.0.0.0:6379:6379"

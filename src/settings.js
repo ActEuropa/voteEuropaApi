@@ -17,7 +17,12 @@
 
 var settings = {
 	auth: {
-		provider: 'ldap'
+		provider: 'ldap',
+		tokensPersistenceProvider: 'redis'
+	},
+	redis:{
+		host: 'localhost',
+		port: 6379
 	},
 	ldap: {
 		url: 'ldap://127.0.0.1:389',
