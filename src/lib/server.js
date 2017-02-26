@@ -26,6 +26,7 @@ var Server = function (authController) {
 
 Server.prototype.start = function () {
 	this.server.post("/auth", this.authController.authenticate);
+	this.server.post("/register", this.authController.register);
 	this.server.listen(8000);
 };
 

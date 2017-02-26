@@ -26,5 +26,9 @@ Auth.prototype.auth = function(user, callback) {
 	this.provider.auth(user, callback);
 };
 
+Auth.prototype.register = function (user, callback) {
+
+};
+
 
 module.exports = Auth;

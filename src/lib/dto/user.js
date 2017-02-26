@@ -15,9 +15,10 @@
  along with VoteEuropa. If not, see <http://www.gnu.org/licenses/>.
  */
 
-var User = function (username, password) {
+var User = function (username, password, email) {
 	this.username = username;
 	this.password = password;
+	this.email = email;
 };
 
 User.prototype.getUserName = function () {
@@ -28,12 +29,20 @@ User.prototype.getPassword = function () {
 	return this.password;
 };
 
+User.prototype.getEmail = function () {
+	return this.email;
+};
+
 User.prototype.setUserName = function (username) {
 	this.username = username;
 };
 
 User.prototype.setPassword = function (password) {
 	this.password = password;
+};
+
+User.prototype.setEmail = function (email) {
+	this.email = email;
 };
 
 module.exports = User;

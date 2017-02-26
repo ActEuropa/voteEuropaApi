@@ -47,4 +47,22 @@ AuthController.prototype.authenticate = function (req, res, next, auth, tokens) 
 };
 
 
+AuthController.prototype.register = function (req, res, next, auth) {
+	this.auth = auth || new Auth();
+	var user = new User(req.params.username, req.params.pwd, req.params.email);
+	this.auth.register(user, function (response, err) {
+		if(err){
+			res.status(500);
+			res.json({
+				error: err
+			});
+		} else {
+			res.status(201);
+			res.json({
+				data: response
+			});
+		}
+	});
+};
+
 module.exports = AuthController;

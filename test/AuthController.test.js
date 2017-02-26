@@ -25,8 +25,17 @@ var Tokens = require('../src/lib/tokens/Tokens');
 suite('AuthController', function () {
 	var sut, user, auth, authMock, tokens, tokensMock;
 	var req, res, next;
+	var user4registration, req4registration;
 
 	setup(function () {
+		req4registration = {
+			params: {
+				username: "aTestUser",
+				pwd: "aTestPwd",
+				email: "aTestEmail@email.com"
+			}
+		};
+		user4registration = new User("aTestUser", "aTestPwd", "aTestEmail@email.com");
 		req = {
 			params: {
 				username: "aTestUser",
@@ -58,4 +67,9 @@ suite('AuthController', function () {
 		tokensMock.verify();
 	}));
 
+	test('calls auth.register', sinon.test(function () {
+		authMock.expects('register').once().withArgs(user4registration, sinon.match.any);
+		sut.register(req4registration, res, next, auth);
+		authMock.verify();
+	}));
 });
