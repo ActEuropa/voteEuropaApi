@@ -35,7 +35,7 @@ AuthController.prototype.authenticate = function (req, res, next, auth, tokens) 
 				error: err
 			});
 		} else {
-			self.tokens.getToken(function (token) {
+			self.tokens.getToken(user, function (token) {
 				res.status(200);
 				res.json({
 					data: response,

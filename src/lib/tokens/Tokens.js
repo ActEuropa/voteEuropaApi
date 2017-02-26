@@ -25,7 +25,11 @@ var Tokens = function (provider) {
 
 Tokens.prototype.getToken = function (username, callback) {
 	var token = randToken.generate(64);
-	this.provider.save([username, token], function (err) {
+	var args = {
+		username: username,
+		token: token
+	};
+	this.provider.save(args, function (err) {
 		if(err){
 			throw new Error(err);
 		} else {
