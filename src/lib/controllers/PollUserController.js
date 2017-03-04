@@ -15,31 +15,24 @@
  along with VoteEuropa. If not, see <http://www.gnu.org/licenses/>.
  */
 
-var randToken = require('rand-token');
-var settings = require('../../settings');
-var Provider = require('./persistenceProviders/' + settings.auth.tokensPersistenceProvider);
+var Tokens = require('../tokens/Tokens');
 
-var Tokens = function (provider) {
-	this.provider = provider || new Provider();
+var PollUserController = function () {
+	// this exists to be a constructor
 };
 
-Tokens.prototype.getToken = function (username, callback) {
-	var token = randToken.generate(64);
-	var args = {
-		username: username,
-		token: token
-	};
-	this.provider.save(args, function (err) {
-		if(err){
-			throw new Error(err);
+PollUserController.prototype.getCurrentPolls = function (req, res, next, tokens) {
+	var tokens = tokens || new Tokens();
+	var username = req.params.username;
+	var token = req.params.token;
+	tokens.validateToken(username, token, function (valid) {
+		if(valid){
+
 		} else {
-			return callback(token);
+
 		}
 	});
 };
 
-Tokens.prototype.validateToken = function (username, token, callback) {
 
-};
-
-module.exports = Tokens;
+module.exports = PollUserController;
