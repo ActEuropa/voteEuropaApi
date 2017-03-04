@@ -29,6 +29,17 @@ Redis.prototype.save = function (data, callback) {
 };
 
 Redis.prototype.get = function (data, callback) {
+	var client = this._getRedisClient();
+	client.get(data, function (err, reply) {
+		if(err){
+			throw new Error(err);
+		}
+		if(reply == ""){
+			return callback(false);
+		} else {
+			return callback(true);
+		}
+	});
 
 };
 
