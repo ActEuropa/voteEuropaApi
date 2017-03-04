@@ -1,6 +1,0 @@
-ignore:
-  - "src/lib/dto"
-  - "node_modules"
-parsers:
-  javascript:
-    enable_partials: yes

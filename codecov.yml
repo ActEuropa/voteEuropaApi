@@ -1,0 +1,8 @@
+ignore:
+  - "src/lib/providers/auth/.*"
+  - "src/lib/tokens/persistenceProviders/.*"
+  - "src/lib/dto/.*"
+  - "node_modules"
+parsers:
+  javascript:
+    enable_partials: yes
