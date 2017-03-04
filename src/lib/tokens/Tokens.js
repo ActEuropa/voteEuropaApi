@@ -46,6 +46,8 @@ Tokens.prototype.validateToken = function (username, token, callback) {
 	this.provider.get(data, function (result) {
 		if (!result){
 			return callback(false);
+		} else {
+			return callback(true);
 		}
 	});
 };

@@ -32,4 +32,29 @@ suite('Tokens', function () {
 		providerMock.verify();
 	}));
 
+	test('Tokens calls callback with false on incorrect token', sinon.test(function () {
+		var provider = {
+			get: function (data, callback) {
+				return callback(false);
+			}
+		};
+		var sut = new Token(provider);
+		var cb = sinon.spy();
+		sut.validateToken(username, validToken, cb);
+		sinon.assert.calledWith(cb, false);
+	}));
+
+	test('Tokens calls callback with true on correct token', sinon.test(function () {
+		var provider = {
+			get: function (data, callback) {
+				return callback(true);
+			}
+		};
+		var sut = new Token(provider);
+		var cb = sinon.spy();
+		sut.validateToken(username, validToken, cb);
+		sinon.assert.calledWith(cb, true);
+	}));
+
+
 });
