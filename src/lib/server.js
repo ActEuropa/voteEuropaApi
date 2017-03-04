@@ -17,9 +17,11 @@
 
 var restify = require('restify');
 var AuthController = require('./controllers/AuthController.js');
+var PollUserController = require('./controllers/PollUserController.js');
 
-var Server = function (authController) {
+var Server = function (authController, pollUserController) {
 	this.authController = authController || new AuthController();
+	this.pollUserController = pollUserController || new PollUserController();
 	this.server = restify.createServer();
 	this.server.use(restify.bodyParser());
 };
@@ -27,6 +29,7 @@ var Server = function (authController) {
 Server.prototype.start = function () {
 	this.server.post("/auth", this.authController.authenticate);
 	this.server.post("/register", this.authController.register);
+	this.server.get("/get/polls/current", this.pollUserController.getCurrentPolls);
 	this.server.listen(8000);
 };
 
