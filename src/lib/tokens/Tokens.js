@@ -39,7 +39,15 @@ Tokens.prototype.getToken = function (username, callback) {
 };
 
 Tokens.prototype.validateToken = function (username, token, callback) {
-
+	var data = {
+		username: username,
+		token: token
+	};
+	this.provider.get(data, function (result) {
+		if (!result){
+			return callback(false);
+		}
+	});
 };
 
 module.exports = Tokens;

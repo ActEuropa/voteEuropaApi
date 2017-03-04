@@ -28,6 +28,10 @@ Redis.prototype.save = function (data, callback) {
 	return callback();
 };
 
+Redis.prototype.get = function (data, callback) {
+
+};
+
 Redis.prototype._getRedisClient = function () {
 	var host = settings.redis.host;
 	var port = settings.redis.port;
