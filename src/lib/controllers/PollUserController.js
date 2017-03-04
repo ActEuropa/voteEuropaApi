@@ -21,8 +21,8 @@ var PollUserController = function () {
 	// this exists to be a constructor
 };
 
-PollUserController.prototype.getCurrentPolls = function (req, res, next, tokens) {
-	var tokens = tokens || new Tokens();
+PollUserController.prototype.getCurrentPolls = function (req, res, next, injectedTokens) {
+	var tokens = injectedTokens || new Tokens();
 	var username = req.params.username;
 	var token = req.params.token;
 	tokens.validateToken(username, token, function (valid) {
