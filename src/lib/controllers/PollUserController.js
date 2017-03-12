@@ -16,20 +16,25 @@
  */
 
 var Tokens = require('../tokens/Tokens');
+var Polls = require('../polls/Polls');
 
 var PollUserController = function () {
 	// this exists to be a constructor
 };
 
-PollUserController.prototype.getCurrentPolls = function (req, res, next, injectedTokens) {
+PollUserController.prototype.getCurrentPolls = function (req, res, next, injectedTokens, injectedPolls) {
 	var tokens = injectedTokens || new Tokens();
 	var username = req.params.username;
 	var token = req.params.token;
+	var polls = injectedPolls || new Polls();
 	tokens.validateToken(username, token, function (valid) {
 		if(valid){
-
+			polls.getActivePolls();
 		} else {
-
+			res.status(401);
+			res.json({
+				"message": "Incorrect token."
+			});
 		}
 	});
 };
