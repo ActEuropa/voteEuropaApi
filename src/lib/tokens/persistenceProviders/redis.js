@@ -34,7 +34,7 @@ Redis.prototype.get = function (data, callback) {
 		if(err){
 			throw new Error(err);
 		}
-		if(reply == ""){
+		if(reply === ""){
 			return callback(false);
 		} else {
 			return callback(true);
