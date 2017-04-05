@@ -4,12 +4,12 @@ var PollUserController = require('../src/lib/controllers/PollUserController');
 var Tokens = require('../src/lib/tokens/Tokens');
 var Polls = require('../src/lib/polls/Polls');
 
-suite('PollUserController', function () {
+describe('PollUserController', function () {
 	var sut, tokens, tokensMock, callback;
 	var req, res, next;
 	var polls, pollsMock;
 
-	setup(function () {
+  beforeEach(function () {
 		callback = function () {};
 		req = {
 			params: {
@@ -24,13 +24,13 @@ suite('PollUserController', function () {
 		sut = new PollUserController();
 	});
 
-	test('GetCurrentPolls call token.validateToken', sinon.test(function () {
+	it('GetCurrentPolls call token.validateToken', function () {
 		tokensMock.expects('validateToken').once().withArgs("aTestUser", "aTestToken", sinon.match.any);
 		sut.getCurrentPolls(req, res, next, tokens);
 		tokensMock.verify();
-	}));
+	});
 
-	test('GetCurrentPolls call Polls.GetActivePolls on correct toekn', sinon.test(function () {
+	it('GetCurrentPolls call Polls.GetActivePolls on correct toekn', function () {
 		var tokens = {
 			validateToken: function (username, token, cb) {
 				return cb(true);
@@ -39,9 +39,9 @@ suite('PollUserController', function () {
 		pollsMock.expects('getActivePolls').once();
 		sut.getCurrentPolls(req, res, next, tokens, polls);
 		pollsMock.verify();
-	}));
+	});
 
-	test('GetCurrentPolls not calls Polls.GetActivePolls on incorrect toekn', sinon.test(function () {
+	it('GetCurrentPolls not calls Polls.GetActivePolls on incorrect toekn', function () {
 		var tokens = {
 			validateToken: function (username, token, cb) {
 				return cb(false);
@@ -54,6 +54,6 @@ suite('PollUserController', function () {
 		pollsMock.expects('getActivePolls').never();
 		sut.getCurrentPolls(req, res, next, tokens, polls);
 		pollsMock.verify();
-	}));
+	});
 
 });

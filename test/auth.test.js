@@ -5,10 +5,10 @@ var Auth = require('../src/lib/Auth');
 var Provider = require('../src/lib/providers/auth/ldap');
 var User = require('../src/lib/dto/user');
 
-suite('Auth', function () {
+describe('Auth', function () {
 	var sut, provider, providerMock, user, redditApi;
 
-	setup(function () {
+  beforeEach(function () {
 		redditApi = function() {};
 		user = new User('aTestUser', 'aTestPwd');
 		provider = new Provider(redditApi);
@@ -16,11 +16,11 @@ suite('Auth', function () {
 		sut = new Auth(provider);
 	});
 
-	test('Auth calls auth method on the provider', sinon.test(function () {
+	it('Auth calls auth method on the provider', function () {
 		var callback = function () {};
 		providerMock.expects('auth').once().withArgs(user, sinon.match.any);
 		sut.auth(user, callback);
 		providerMock.verify();
-	}));
+	});
 
 });

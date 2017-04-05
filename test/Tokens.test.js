@@ -4,10 +4,10 @@ var Token = require('../src/lib/tokens/Tokens');
 var Provider = require('../src/lib/tokens/persistenceProviders/redis');
 
 
-suite('Tokens', function () {
+describe('Tokens', function () {
 	var sut, provider, providerMock, cb, username, validToken, validArray;
 
-	setup(function () {
+  beforeEach(function () {
 		username = "test";
 		validToken = "aValidToken";
 		validArray = {
@@ -20,19 +20,19 @@ suite('Tokens', function () {
 		sut = new Token(provider);
 	});
 
-	test('Tokens calls save to the provider with an array', sinon.test(function () {
+	it('Tokens calls save to the provider with an array', function () {
 		providerMock.expects('save').once().calledWith(sinon.match.array, sinon.match.function);
 		sut.getToken(username, cb);
 		providerMock.verify();
-	}));
+	});
 
-	test('Tokens call get to the provider with an array with valid data', sinon.test(function () {
+	it('Tokens call get to the provider with an array with valid data', function () {
 		providerMock.expects('get').once().calledWith(validArray, sinon.match.function);
 		sut.validateToken(username, validToken, cb);
 		providerMock.verify();
-	}));
+	});
 
-	test('Tokens calls callback with false on incorrect token', sinon.test(function () {
+	it('Tokens calls callback with false on incorrect token', function () {
 		var provider = {
 			get: function (data, callback) {
 				return callback(false);
@@ -42,9 +42,9 @@ suite('Tokens', function () {
 		var cb = sinon.spy();
 		sut.validateToken(username, validToken, cb);
 		sinon.assert.calledWith(cb, false);
-	}));
+	});
 
-	test('Tokens calls callback with true on correct token', sinon.test(function () {
+	it('Tokens calls callback with true on correct token', function () {
 		var provider = {
 			get: function (data, callback) {
 				return callback(true);
@@ -54,7 +54,5 @@ suite('Tokens', function () {
 		var cb = sinon.spy();
 		sut.validateToken(username, validToken, cb);
 		sinon.assert.calledWith(cb, true);
-	}));
-
-
+	});
 });

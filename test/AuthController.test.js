@@ -22,12 +22,12 @@ var User = require('../src/lib/dto/user');
 var Auth = require('../src/lib/Auth');
 var Tokens = require('../src/lib/tokens/Tokens');
 
-suite('AuthController', function () {
+describe('AuthController', function () {
 	var sut, user, auth, authMock, tokens, tokensMock;
 	var req, res, next;
 	var user4registration, req4registration;
 
-	setup(function () {
+  beforeEach(function () {
 		req4registration = {
 			params: {
 				username: "aTestUser",
@@ -50,13 +50,13 @@ suite('AuthController', function () {
 		sut = new AuthController();
 	});
 
-	test('AuthController calls Auth auth method', sinon.test(function () {
+	it('AuthController calls Auth auth method', function () {
 		authMock.expects('auth').once().withArgs(user, sinon.match.any);
 		sut.authenticate(req, res, next, auth, tokens);
 		authMock.verify();
-	}));
+	});
 
-	test('AuthController calls Tokens.getToken', sinon.test(function () {
+	it('AuthController calls Tokens.getToken', function () {
 		var auth = {
 			auth: function (user, callback) {
 				callback(true, false);
@@ -65,11 +65,11 @@ suite('AuthController', function () {
 		tokensMock.expects('getToken').once().withArgs();
 		sut.authenticate(req, res, next, auth, tokens);
 		tokensMock.verify();
-	}));
+	});
 
-	test('calls auth.register', sinon.test(function () {
+	it('calls auth.register', function () {
 		authMock.expects('register').once().withArgs(user4registration, sinon.match.any);
 		sut.register(req4registration, res, next, auth);
 		authMock.verify();
-	}));
+	});
 });
