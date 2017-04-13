@@ -16,9 +16,9 @@
  */
 
 var User = function (username, password, email) {
-	this.username = username;
-	this.password = password;
-	this.email = email;
+	this.username = this.setUserName(username);
+	this.password = this.setPassword(password);
+	this.email = this.setEmail(email);
 };
 
 User.prototype.getUserName = function () {
