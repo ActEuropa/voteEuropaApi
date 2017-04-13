@@ -16,18 +16,17 @@
     "url": "https://github.com/ActEuropa/VotingPlatformApi/issues"
   },
   "dependencies": {
-    "restify": "4.3.*",
-    "ldapjs": "1.0.*",
-    "rand-token": "0.3.*",
-    "mongoose": "4.9.*",
-    "redis": "2.7.*"
+    "restify": "4.*",
+    "ldapjs": "1.*",
+    "rand-token": "0.*",
+    "redis": "2.*"
   },
   "devDependencies": {
-    "sinon": "2.1.*",
-    "mocha": "3.2.*",
-    "chai": "3.5.*",
-    "codecov": "2.1.*",
-    "istanbul": "0.4.*"
+    "sinon": "2.*",
+    "mocha": "3.*",
+    "chai": "3.*",
+    "istanbul": "0.*"
+    "codecov": "2.*",
   },
   "homepage": "https://github.com/ActEuropa/VotingPlatformApi#readme"
 }
