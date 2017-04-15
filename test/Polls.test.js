@@ -14,9 +14,10 @@ describe('Polls', function () {
   });
 
   it('call getActivePolls on provider', function () {
-      providerMock.expects('getActivePolls').once();
-      sut.getActivePolls();
-      providerMock.verify();
+    var cb = function () {};
+    providerMock.expects('getActivePolls').once().withArgs(sinon.match.func);
+    sut.getActivePolls(cb);
+    providerMock.verify();
   });
 
 });
