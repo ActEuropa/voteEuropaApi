@@ -20,6 +20,9 @@ var settings = {
 		provider: 'ldap',
 		tokensPersistenceProvider: 'redis'
 	},
+	storage: {
+		provider: 'mysql'
+	},
 	redis:{
 		host: 'localhost',
 		port: 6379
@@ -27,6 +30,13 @@ var settings = {
 	ldap: {
 		url: 'ldap://127.0.0.1:389',
 		dcString: ',dc=test,dc=com'
+	},
+	mysql: {
+		host: '127.0.0.1',
+		port: '3306',
+		user: 'root',
+		pwd: 'secret',
+		db: 'vote_europa'
 	}
 };
 
