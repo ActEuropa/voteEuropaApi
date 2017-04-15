@@ -19,7 +19,8 @@
     "restify": "4.*",
     "ldapjs": "1.*",
     "rand-token": "0.*",
-    "redis": "2.*"
+    "redis": "2.*",
+    "mysql": "2.*"
   },
   "devDependencies": {
     "sinon": "2.*",
