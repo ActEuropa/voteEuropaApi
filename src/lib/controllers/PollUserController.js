@@ -29,7 +29,15 @@ PollUserController.prototype.getCurrentPolls = function (req, res, next, injecte
 	var polls = injectedPolls || new Polls();
 	tokens.validateToken(username, token, function (valid) {
 		if(valid){
-			polls.getActivePolls();
+			polls.getActivePolls(function (data, err) {
+				if(err){
+					res.status(500);
+					res.json(err);
+				} else {
+					res.status(200);
+					res.json(data);
+				}
+      });
 		} else {
 			res.status(401);
 			res.json({
