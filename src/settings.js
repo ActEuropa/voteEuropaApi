@@ -21,7 +21,7 @@ var settings = {
 		tokensPersistenceProvider: 'redis'
 	},
 	storage: {
-		provider: 'mysql'
+		provider: 'mongodb'
 	},
 	redis:{
 		host: 'localhost',
@@ -31,12 +31,10 @@ var settings = {
 		url: 'ldap://127.0.0.1:389',
 		dcString: ',dc=test,dc=com'
 	},
-	mysql: {
+	mongodb: {
 		host: '127.0.0.1',
-		port: '3306',
-		user: 'root',
-		pwd: 'secret',
-		db: 'vote_europa'
+		port: '27017',
+		collection: 'vote_europa'
 	}
 };
 
