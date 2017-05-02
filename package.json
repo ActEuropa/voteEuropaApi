@@ -20,7 +20,7 @@
     "ldapjs": "1.*",
     "rand-token": "0.*",
     "redis": "2.*",
-    "mysql": "2.*"
+    "mongoose": "4.*"
   },
   "devDependencies": {
     "sinon": "2.*",
