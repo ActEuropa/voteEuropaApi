@@ -1,21 +1,40 @@
-/*
- Copyright (c) 2017 ActEuropa
+const express = require('express')
+const settings = require('./settings')
+const log = require('./lib/log').getInstance()
 
- This file is part of VoteEuropa.
+const app = express()
+const expressSwagger = require('express-swagger-generator')(app)
 
- VoteEuropa is free software: you can redistribute it and/or modify
- it under the terms of the GNU Affero General Public License as
- published by the Free Software Foundation, either version 3 of the
- License, or (at your option) any later version.
- This program is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- GNU Affero General Public License for more details.
- You should have received a copy of the GNU Affero General Public License
- along with VoteEuropa. If not, see <http://www.gnu.org/licenses/>.
-*/
- 
-var Server = require("./lib/server.js");
+let options = {
+  swaggerDefinition: {
+    info: {
+      title: 'VoteEuropa',
+      version: '1.0.0'
+    },
+    produces: [
+      'application/json',
+      'application/xml'
+    ],
+    schemes: ['http']
+  },
+  basedir: __dirname,
+  files: ['./routes/**/*.js']
+}
 
-var server = new Server();
-server.start();
+const miscRoutes = require('./routes/misc')
+
+app.use((req, res, next) => {
+  log.debug({
+    'call': req.originalUrl,
+    'method': req.method
+  })
+  next()
+})
+
+app.use(miscRoutes)
+expressSwagger(options)
+const server = app.listen(settings.appPort, settings.appHost, () => {
+  log.info(`server started at http://${settings.appHost}:${settings.appPort}`)
+})
+
+module.exports = server

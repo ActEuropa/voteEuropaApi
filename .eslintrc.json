@@ -1,0 +1,7 @@
+{
+  "extends": "standard",
+  "rules": {
+      "standard/no-callback-literal": 0,
+      "no-undef": 0
+  }
+}
