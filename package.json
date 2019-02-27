@@ -23,7 +23,8 @@
   "dependencies": {
     "express": "4.16.4",
     "express-swagger-generator": "1.1.13",
-    "bunyan": "1.8.12"
+    "bunyan": "1.8.12",
+    "passport-google-oauth20": "1.0.0"
   },
   "devDependencies": {
     "chai": "4.2.0",
