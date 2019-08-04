@@ -9,7 +9,7 @@ const router = express.Router()
  */
 router.get('/ping', (req, res) => {
   res.status(200)
-  res.json({ 'status': 'pong' })
+  res.json({ status: 'pong' })
 })
 
 module.exports = router

@@ -5,7 +5,7 @@ const log = require('./lib/log').getInstance()
 const app = express()
 const expressSwagger = require('express-swagger-generator')(app)
 
-let options = {
+const options = {
   swaggerDefinition: {
     info: {
       title: 'VoteEuropa',
@@ -22,16 +22,18 @@ let options = {
 }
 
 const miscRoutes = require('./routes/misc')
+const authRoutes = require('./routes/auth')
 
 app.use((req, res, next) => {
   log.debug({
-    'call': req.originalUrl,
-    'method': req.method
+    call: req.originalUrl,
+    method: req.method
   })
   next()
 })
 
 app.use(miscRoutes)
+app.use(authRoutes)
 expressSwagger(options)
 const server = app.listen(settings.appPort, settings.appHost, () => {
   log.info(`server started at http://${settings.appHost}:${settings.appPort}`)
