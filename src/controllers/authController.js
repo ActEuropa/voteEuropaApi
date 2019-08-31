@@ -1,4 +1,4 @@
-// const log = require('../lib/log').getInstance()
+const log = require('../lib/log').getInstance()
 const AuthService = require('../services/authService')
 
 const AuthController = function (authService) {
@@ -6,6 +6,7 @@ const AuthController = function (authService) {
 }
 
 AuthController.prototype.withGoogle = function () {
+  log.debug('Calling auth on Google')
   this.authService.authGoogle()
 }
 
